@@ -80,17 +80,17 @@
 
 <p align="center">
   <!-- Main GitHub stats (dark theme) -->
-  <img src="https://github-readme-stats.vercel.app/api?username=mizanurrahman&show_icons=true&theme=tokyonight" alt="github stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=mizanicst1234&show_icons=true&theme=tokyonight" alt="github stats" />
 </p>
 
 <p align="center">
-  <!-- Streak -->
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=mizanurrahman&theme=tokyonight" alt="streak" />
+  <!-- Streak (may be temporarily down if the hosting service is facing issues) -->
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=mizanicst1234&theme=tokyonight" alt="streak" />
 </p>
 
 <p align="center">
   <!-- Top languages compact -->
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mizanurrahman&layout=compact&theme=tokyonight" alt="top langs" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mizanicst1234&layout=compact&theme=tokyonight" alt="top langs" />
 </p>
 
 ---
@@ -100,7 +100,7 @@
 <!-- Contribution Snake by Platane (shows path of your contributions like a snake). Replace `username` with your GitHub username if needed. -->
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Platane/snk/master/snake.svg?user=mizanurrahman&theme=dark" alt="Contribution Snake" />
+  <img src="https://raw.githubusercontent.com/Platane/snk/master/snake.svg?user=mizanicst1234&theme=dark" alt="Contribution Snake" />
 </p>
 
 ---
@@ -110,7 +110,7 @@
 <!-- Activity Graph — shows a nicer heatmap of your contributions. If the service is down, remove this image. -->
 
 <p align="center">
-  <img src="https://activity-graph.herokuapp.com/graph?username=mizanurrahman&theme=github" alt="Contribution graph" />
+  <img src="https://activity-graph.herokuapp.com/graph?username=mizanicst1234&theme=github" alt="Contribution graph" />
 </p>
 
 ---
@@ -118,7 +118,7 @@
 ## 🏆 GitHub Trophies
 
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=mizanurrahman&theme=radical&no-frame=true&row=1&column=6" />
+  <img src="https://github-profile-trophy.vercel.app/?username=mizanicst1234&theme=radical&no-frame=true&row=1&column=6" />
 </p>
 
 ---
@@ -132,7 +132,7 @@
 ## 📈 Visitor Count
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=mizanurrahman&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" />
+  <img src="https://komarev.com/ghpvc/?username=mizanicst1234&label=Profile%20views&color=0e75b6&style=flat" alt="Profile views" />
 </p>
 
 ---
@@ -148,7 +148,7 @@
 
 ## 🛠 How to use / Install this README
 
-1. Create a file named `README.md` in the root of your GitHub profile repository (the repo must be named exactly like your GitHub username: `mizanurrahman`).
+1. Create a file named `README.md` in the root of your GitHub profile repository (the repo must be named exactly like your GitHub username: `mizanicst1234`).
 2. Copy the content of this file into that `README.md`.
 3. Commit and push — GitHub will render the README on your profile automatically.
 
@@ -168,4 +168,4 @@ I can also:
 
 ### ⭐️ Thanks for visiting my profile!
 
-*If you want, tell me which username you'd like the badges to target (e.g. `mizanicst1234` or `mizanurrahman`) and I will update everything to match that exactly.*
+*If you want, tell me which username you'd like the badges to target (e.g. `mizanicst1234` or `mizanicst1234`) and I will update everything to match that exactly.*
