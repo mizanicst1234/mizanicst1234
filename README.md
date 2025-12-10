@@ -55,7 +55,7 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
 
 ## 🌐 What I'm Working On
 
-* Full-featured Laravel-based HR consultancy system
+* Full-featured Laravel-based Application
 * Building reusable backend components & scalable APIs
 * Clean architecture & modern deployment workflows
 
@@ -91,7 +91,7 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
   <a href="mailto:dev.mir.bd@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
-  <a href="https://linkedin.com">
+  <a href="http://www.linkedin.com/in/mizanur-rahman-bd000">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
   <a href="https://mizanicst1234.github.io">
