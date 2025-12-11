@@ -63,8 +63,9 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
 
 ### 🔥 GitHub Streak
 
-<img src="https://streak-stats.demolab.com?user=mizanicst1234&theme=tokyonight" alt="GitHub Streak" />
-<small>If the streak image fails to load, view it <a href="https://github.com/mizanicst1234">on my GitHub profile</a>.</small>
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=mizanicst1234&theme=tokyonight&hide_border=true" />
+</p>
 
 
 ---
