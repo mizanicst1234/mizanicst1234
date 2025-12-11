@@ -88,13 +88,10 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
 
 ---
 
+## 📈 Visitor Count 
+<p align="center"> <img src="https://komarev.com/ghpvc/?username=mizanurrahman&label=Profile%20views&color=0e75b6&style=flat" alt="mizanurrahman" /> </p>
+
 ## 🔗 Connect With Me
-
-<p align="center">
-  <img src="https://img.shields.io/badge/dynamic/json?logo=github&label=Profile%20Visitors&labelColor=000000&color=blue&query=$.value&url=https://countapi.x47.xyz/hit/mizanicst1234.github/profile_visits" alt="visitor count" />
-</p>
-
-
 <p align="center">
   <a href="mailto:dev.mir.bd@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
