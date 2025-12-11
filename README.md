@@ -89,6 +89,11 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
 ## 🔗 Connect With Me
 
 <p align="center">
+  <img src="https://img.shields.io/badge/dynamic/json?logo=github&label=Profile%20Visitors&labelColor=000000&color=blue&query=$.value&url=https://api.countapi.xyz/hit/mizanicst1234.github/profile_visits" alt="visitor count" />
+</p>
+
+
+<p align="center">
   <a href="mailto:dev.mir.bd@gmail.com">
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
   </a>
@@ -101,12 +106,6 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
 </p>
 
 ---
-
-<p align="center">
-  <img src="https://img.shields.io/badge/dynamic/json?label=Visitors&logo=github&color=blue&query=$.value&url=https://api.countapi.xyz/hit/mizanicst1234.github/profile_visits" alt="visitor badge" />
-</p>
-
-
 
 <br/>
 <p align="center"><i>"Build. Improve. Repeat."</i></p>
