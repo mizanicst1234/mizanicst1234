@@ -64,7 +64,6 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
 ### 🔥 GitHub Streak
 
 <p align="center">
-  <!-- Local cached copy (served from your repo) -->
   <img src="./assets/streak.png" alt="GitHub streak" />
 </p>
 
