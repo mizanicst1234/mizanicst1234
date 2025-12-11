@@ -1,0 +1,50 @@
+name: Cache GitHub Streak Image
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # every day at 03:00 UTC (adjust if you want)
+  workflow_dispatch:
+
+jobs:
+  download-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Create assets dir
+        run: mkdir -p assets
+
+      - name: Download streak image (try Vercel mirror then main)
+        run: |
+          set -e
+          OUT=assets/streak.png
+          # Primary mirror (more reliable)
+          URL="https://github-readme-streak-stats-eight.vercel.app?user=mizanicst1234&theme=tokyonight&hide_border=true"
+          echo "Trying $URL"
+          if curl -fSL --max-time 30 --output "$OUT" "$URL"; then
+            echo "Downloaded from mirror"
+          else
+            echo "Mirror failed — trying demo"
+            URL2="https://streak-stats.demolab.com?user=mizanicst1234&theme=tokyonight&hide_border=true"
+            curl -fSL --max-time 30 --output "$OUT" "$URL2"
+            echo "Downloaded from demo"
+          fi
+
+      - name: Show file info
+        run: ls -lah assets && file assets/streak.png || true
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/streak.png || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update cached streak image"
+            git push
+          fi
