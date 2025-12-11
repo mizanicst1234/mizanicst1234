@@ -101,6 +101,12 @@ I am a passionate **Backend Developer** focused on building high-quality, scalab
 </p>
 
 ---
+## 👀 Profile Visitor Count
+
+<p align="center">
+  <img src="https://img.shields.io/badge/dynamic/json?logo=github&label=Profile%20Visitors&labelColor=000000&color=blue&query=$.value&url=https://api.countapi.xyz/hit/mizanicst1234.github/profile_visits" alt="visitor count" />
+</p>
+
 
 <br/>
 <p align="center"><i>"Build. Improve. Repeat."</i></p>
