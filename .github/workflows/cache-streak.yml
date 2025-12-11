@@ -1,15 +1,15 @@
-name: Cache GitHub Streak Image (validated)
+name: Cache GitHub Streak Image (debug-friendly)
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 3 * * *'
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  download-validate-commit:
+  debug-download:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -18,66 +18,82 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      - name: Create assets dir
+      - name: Ensure assets dir
         run: mkdir -p assets
 
-      - name: Download candidate image (mirror then demo)
+      - name: Try download (mirror then demo) and save headers
         run: |
           set -e
-          OUT=assets/streak.png
+          OUT=assets/streak-candidate
           MIRROR="https://github-readme-streak-stats-eight.vercel.app?user=mizanicst1234&theme=tokyonight&hide_border=true"
           DEMO="https://streak-stats.demolab.com?user=mizanicst1234&theme=tokyonight&hide_border=true"
 
-          echo "Trying mirror..."
-          if curl -fSL --max-time 30 --output "$OUT" "$MIRROR"; then
-            echo "Downloaded from mirror"
+          # Try mirror and capture headers
+          echo "Fetching MIRROR..."
+          curl -sSL -D assets/mirror-headers.txt --max-time 30 -o ${OUT}-mirror "${MIRROR}" || true
+          # Try demo
+          echo "Fetching DEMO..."
+          curl -sSL -D assets/demo-headers.txt --max-time 30 -o ${OUT}-demo "${DEMO}" || true
+
+          # Choose which one to use (prefer mirror if PNG)
+          # If mirror is PNG, move it to final, else if demo is PNG, use demo, else keep mirror as candidate.
+          MIRROR_HEADER=$(awk 'NR==1{print $0}' assets/mirror-headers.txt || true)
+          echo "Mirror first header: $MIRROR_HEADER"
+          DEMO_HEADER=$(awk 'NR==1{print $0}' assets/demo-headers.txt || true)
+          echo "Demo first header: $DEMO_HEADER"
+
+          # Prefer mirror file if starts with PNG bytes
+          if xxd -l 8 -p ${OUT}-mirror 2>/dev/null | grep -qi '^89504e470d0a1a0a'; then
+            mv ${OUT}-mirror assets/streak.png
+            echo "Using mirror (valid PNG)."
+          elif xxd -l 8 -p ${OUT}-demo 2>/dev/null | grep -qi '^89504e470d0a1a0a'; then
+            mv ${OUT}-demo assets/streak.png
+            echo "Using demo (valid PNG)."
           else
-            echo "Mirror failed — trying demo..."
-            curl -fSL --max-time 30 --output "$OUT" "$DEMO"
-            echo "Downloaded from demo"
+            # No valid PNG; choose mirror as candidate for debugging
+            mv ${OUT}-mirror assets/streak-candidate
+            echo "No valid PNG found. Candidate saved as assets/streak-candidate (not committed)."
           fi
 
-      - name: Validate image is PNG
+      - name: Print file info and small preview (for logs)
         run: |
-          if [ ! -f assets/streak.png ]; then
-            echo "No file downloaded"
-            exit 1
-          fi
-          # Read first 8 bytes in hex
-          head_bytes=$(xxd -l 8 -p assets/streak.png | tr '[:lower:]' '[:lower:]')
-          echo "Header bytes: $head_bytes"
-          if [ "$head_bytes" != "89504e470d0a1a0a" ]; then
-            echo "Downloaded file is NOT a PNG. Aborting commit."
-            # optional: save for debugging
-            ls -lah assets
-            file assets/streak.png || true
-            echo "---- start of file (first 500 chars) ----"
-            head -c 500 assets/streak.png || true
+          echo "Files in assets:"
+          ls -lah assets || true
+          echo "File type detection:"
+          file assets/* || true
+          echo "Head of candidate (if exists):"
+          if [ -f assets/streak-candidate ]; then
+            echo "---- start head of assets/streak-candidate ----"
+            head -c 800 assets/streak-candidate || true
             echo "---- end ----"
-            exit 1
           fi
-          echo "PNG validation passed."
 
-      - name: Commit changes (if any)
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/streak.png || true
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-          git commit -m "chore: update cached streak image"
+      - name: Upload candidate/download for debugging (always)
+        uses: actions/upload-artifact@v4
+        with:
+          name: streak-download-for-debug
+          path: assets/*
 
-      - name: Push using PAT or GITHUB_TOKEN
-        env:
-          GH_PAGES_PAT: ${{ secrets.GH_PAGES_PAT }}
-          REPO: ${{ github.repository }}
+      - name: Commit & push if we have a valid PNG
+        if: ${{ steps }}  # always run condition but guarded inside script
         run: |
-          if [ -n "${GH_PAGES_PAT}" ]; then
-            echo "Using PAT to push"
-            git push https://x-access-token:${GH_PAGES_PAT}@github.com/${REPO}.git HEAD:main
+          if [ -f assets/streak.png ]; then
+            echo "Valid PNG exists — committing."
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add assets/streak.png
+            if git diff --staged --quiet; then
+              echo "No changes to commit"
+              exit 0
+            fi
+            git commit -m "chore: update cached streak image"
+            # Use PAT if provided, otherwise use GITHUB_TOKEN
+            if [ -n "${{ secrets.GH_PAGES_PAT }}" ]; then
+              git push https://x-access-token:${{ secrets.GH_PAGES_PAT }}@github.com/${{ github.repository }}.git HEAD:main
+            else
+              git push origin HEAD:main
+            fi
           else
-            echo "Using GITHUB_TOKEN to push"
-            git push origin HEAD:main
+            echo "No valid PNG to commit. Exiting successfully after uploading debug artifacts."
+            exit 0
           fi
